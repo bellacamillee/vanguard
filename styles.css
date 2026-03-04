@@ -1,13 +1,10 @@
-/* CSS BY YOUR NAME */
+/* CSS BY Isabella A */
 
-/* IMPORTED FONTS*/
-/* IMPORT "INTER" FROM GOOGLE FONTS"
+/* IMPORTED FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 /* CSS RESET */
-/* http://meyerweb.com/eric/tools/css/reset/
-v2.0 | 20110126
-License: none (public domain)
-*/
+/* http://meyerweb.com/eric/tools/css/reset/ */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -28,25 +25,20 @@ time, mark, audio, video {
     font: inherit;
     vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
+
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
     display: block;
 }
+
 body {
     line-height: 1;
 }
+
 ol, ul {
     list-style: none;
 }
-blockquote, q {
-    quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-    content: '';
-    content: none;
-}
+
 table {
     border-collapse: collapse;
     border-spacing: 0;
@@ -62,100 +54,131 @@ table {
     --font: "Inter", sans-serif;
 }
 
-/* GLOBAL STYLES (MOBILE FIRST (SMALL) */
+/* GLOBAL STYLES (mobile first/small) */
 
-/* MIN-WIDTH OF THE PAGE SHOULD NOT GO BELOW 400PX */
+body {
+    min-width: 400px;
+    font-family: var(--font);
+    line-height: 1.6;
+    background: var(--white);
+    color: var(--charcoal);
+}
 
-/* ADD A DIV WITH THE CLASS OF CONTAINER TO EVERY CONTENT CONTAINER THIS IS ALLOW THE BASE ELEMENTS TO BE 100% WIDTH, BUT CONSTRAIN THE ACTUAL CONTENT TO 90% */
 .container {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* ADD TO "INNOVATION & INVESTMENT SECTION (Photo by Kevin Matos on Unsplash) */
- {
-    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('images/vanguard-hero.jpg') no-repeat center center/cover;
+header {
+    padding: 1rem 0;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--charcoal);
+    font-weight: 600;
+}
+
+/* HERO SECTION */
+#about {
+    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+                url('../images/vanguard-hero.jpg') no-repeat center center/cover;
     height: 80vh;
     display: grid;
     place-items: center;
     text-align: center;
     padding: 1rem;
-    overflow: hidden;
+    color: var(--white);
 }
 
-/* ADD FLOATING SVG LOGO BEFORE THE H1 */
- {
-    content: "";
+h1 {
+    position: relative;
+    font-size: 2rem;
+}
 
-    left:-.5rem;
+/* Floating Logo */
+h1::before {
+    content: "";
+    position: absolute;
+    left: -4rem;
+    top: 0;
     width: 3.75rem;
     height: 3.75rem;
-    background: url('images/vanguard-logo.svg') no-repeat center/contain;
-
+    background: url('../images/vanguard-logo.svg') no-repeat center/contain;
 }
-/* THIS ONE IS DONE FOR YOU */
+
+/* BAR CHART */
 #bar-chart {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     align-items: flex-end;
-    justify-content: space-around;
     gap: 1rem;
     height: 300px;
-    width: 100%;
     max-width: 800px;
-    padding: 1rem;
-    position: relative;
+    margin: 2rem auto;
 }
-/* ADD ON TRANSITION ON HEIGHT */
+
 .bar {
     width: 50px;
     background: var(--charcoal);
     border-radius: 10px;
-    position: relative;
-    transition: ;
     height: 0;
+    transition: height 0.5s ease-in-out;
+    animation: stepUp 1s ease-in-out forwards;
 }
-/* THIS ONE IS DONE FOR YOU */
+
 .bar::after {
     content: attr(data-year);
     position: absolute;
     bottom: -25px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 1rem;
     font-weight: bold;
-    color: var(--white);
+    color: var(--black);
 }
+
 @keyframes stepUp {
-    0% {
-        height: 0;
-    }
-    100% {
-        height: var(--height);
-    }
-}
-/* ADD ANIMATION ON stepUp for 1s ease-in-out forwards */
-.bar {
-    animation: stepUp 1s ease-in-out forwards;
+    from { height: 0; }
+    to { height: var(--height); }
 }
 
+/* MEDIA QUERY (medium) */
+@media (min-width: 800px) {
 
-/* MEDIA QUERIES (MEDIUM) */ 
+    nav ul {
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+
+    #services {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
 
     #results {
+        display: grid;
         grid-template-columns: 1fr 1fr;
+        gap: 2rem;
     }
-    .results-container {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-    .results-table {
-        width: 50%;
-    }
-    .bar-chart {
-        width: 50%;
+}
+
+/* MEDIA QUERY (large) */
+@media (min-width: 1024px) {
+
+    h1 {
+        font-size: 2.75rem;
     }
 
+    #services {
+        grid-template-columns: repeat(3, 1fr);
+    }
 
-/* MEDIA QUERIES (LARGE) */
+}
