@@ -47,15 +47,14 @@ table {
 /* ROOT VARIABLES */
 :root {
     --blue: #007BFF;
-    --red: #FF4500;
-    --white: #EAEAEA;
-    --black: #000000;
+    --gold: #C5A047;
+    --white: #ffffff;
     --charcoal: #333333;
+    --light-gray: #f4f4f4;
     --font: "Inter", sans-serif;
 }
 
 /* GLOBAL STYLES (mobile first/small) */
-
 body {
     min-width: 400px;
     font-family: var(--font);
@@ -84,26 +83,46 @@ nav a {
     text-decoration: none;
     color: var(--charcoal);
     font-weight: 600;
+    position: relative;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    background: var(--gold);
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
 }
 
 /* HERO SECTION */
 #about {
-    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-                url('../images/vanguard-hero.jpg') no-repeat center center/cover;
-    height: 80vh;
-    display: grid;
-    place-items: center;
+    background: linear-gradient(rgba(0,0,0,.75), rgba(0,0,0,.75)),
+                url('../images/vanguard-hero.jpg') no-repeat center/cover;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    padding: 1rem;
+    padding: 2rem;
     color: var(--white);
 }
 
 h1 {
     position: relative;
     font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
 }
 
-/* Floating Logo */
 h1::before {
     content: "";
     position: absolute;
@@ -112,6 +131,49 @@ h1::before {
     width: 3.75rem;
     height: 3.75rem;
     background: url('../images/vanguard-logo.svg') no-repeat center/contain;
+}
+
+h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+/* SECTIONS */
+section {
+    padding: 4rem 0;
+}
+
+section:nth-child(even) {
+    background: var(--light-gray);
+}
+
+/* SERVICES CARDS */
+#services {
+    display: grid;
+    gap: 2rem;
+}
+
+#services article {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#services article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
 /* BAR CHART */
@@ -132,6 +194,7 @@ h1::before {
     height: 0;
     transition: height 0.5s ease-in-out;
     animation: stepUp 1s ease-in-out forwards;
+    position: relative;
 }
 
 .bar::after {
@@ -149,6 +212,37 @@ h1::before {
     to { height: var(--height); }
 }
 
+/* FORM STYLES */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem 0;
+}
+
+input, textarea {
+    padding: 0.75rem;
+    border: 1px solid var(--charcoal);
+    border-radius: 5px;
+    font-family: var(--font);
+}
+
+button {
+    padding: 0.75rem 1.5rem;
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
 /* MEDIA QUERY (medium) */
 @media (min-width: 800px) {
 
@@ -158,9 +252,7 @@ h1::before {
     }
 
     #services {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     #results {
@@ -180,5 +272,4 @@ h1::before {
     #services {
         grid-template-columns: repeat(3, 1fr);
     }
-
 }
